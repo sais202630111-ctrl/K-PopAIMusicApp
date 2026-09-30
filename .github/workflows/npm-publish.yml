@@ -1,19 +1,15 @@
 name: Deploy to GitHub Pages
 
 on:
-  # main 브랜치에 push할 때마다 배포
   push:
     branches: [main]
-  # 수동으로도 실행 가능
   workflow_dispatch:
 
-# GitHub Pages에 배포할 권한
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 동시에 여러 배포가 돌지 않도록
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -25,20 +21,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # 정적 파일(index.html 등)을 Pages에 업로드
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          # 저장소 루트 전체를 배포 (index.html이 루트에 있는 경우)
           path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
-```
