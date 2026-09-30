@@ -1,0 +1,10 @@
+{
+  "description": "Discover personalized K-Pop music recommendations with AI by entering tags or moods, and manage your favorite songs with ratings and comments.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
